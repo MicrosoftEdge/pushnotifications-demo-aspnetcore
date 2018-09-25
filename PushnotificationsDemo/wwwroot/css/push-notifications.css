@@ -1,0 +1,679 @@
+/*
+ *	PUSH NOTIFICATIONS
+ *	=============================================
+ *	@Dependencies:
+ *	@Note:
+ *	@TODO:
+ */
+
+body {
+	background-color: #fff;
+}
+
+/* DO NOT remove focus altogether, just style to your colors */
+:focus {
+	outline: 1px dotted #000;
+}
+
+::-moz-selection {
+	background: #a5802a;
+	color: #000;
+}
+
+::selection {
+	background: #a5802a;
+	color: #000;
+}
+
+a:link, a:visited {
+	color: #a5802a;
+}
+
+a:hover {
+	color: #666;
+}
+
+.l-section--banner--dark a:link,
+.l-section--banner--dark a:visited,
+.l-section--banner--dark-black a:link,
+.l-section--banner--dark-black a:visited {
+	color: #dbccaa;
+}
+
+.l-section--banner--dark a:hover,
+.l-section--banner--dark-black a:hover {
+	color: #c3a86f;
+}
+
+/*
+ *	FORM ELEMENTS
+ *	---------------------------------------------
+ */
+
+button {
+	padding: .5em .75em;
+	border: 0;
+	border-radius: 0;
+	font: inherit;
+	-webkit-appearance: none;
+	background-color: #a5802a;
+	color: #000;
+}
+
+button:hover,
+button:focus {
+	outline: 2px solid hsla(0, 0%, 0%, .4);
+	outline-offset: 0;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+button:active {
+	background-color: #999;
+}
+
+/*
+ *	UNIVERSAL DEMO-SPECIFIC STYLES
+ *	=============================================
+ */
+
+h1,
+h2,
+h3,
+button,
+.highlight,
+.card--caption {
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	font-weight: normal;
+}
+
+h1,
+h2,
+h3 {
+	text-align: center;
+}
+
+h1,
+.h1 {
+	font-size: 3.4rem;
+	letter-spacing: .1rem;	
+}
+
+h2,
+.h2 {
+	/* for spans */
+	position: relative;
+	font-size: 2.6rem;
+	font-style: italic;
+	letter-spacing: .1rem;
+}
+
+h2::after {
+	content: "";
+	position: relative;
+	display: block;
+	height: .5rem;
+	width: 7rem;
+	border-bottom: 3px solid;
+	text-align: center;
+	margin: .2rem auto;
+}
+
+h3,
+.h3 {
+	font-size: 1.3rem;
+	letter-spacing: .06rem;
+}
+
+.title-step {
+	font-family: "Segoe UI", Segoe, "Segoe WP", "Lucida Grande", "Lucida Sans", Verdana, sans-serif;
+	position: absolute;
+	top: -1rem;
+	left: 0;
+	right: 0;
+	
+	margin: 0 auto;
+	max-width: 6rem;
+	
+	font-size: .9rem;
+	font-style: normal;	
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: .01rem;
+
+	color: #9b8e6e;	
+}
+
+.c-nav-bar {
+	z-index: 30;
+}
+
+.highlight {
+	margin-top: 1.2rem;
+}
+
+.btn--action {
+	margin: 2rem auto 1.2rem auto;
+}
+
+/* Only apply dark background style to subsection */
+.subsection-dark {
+	padding-top: 3rem;
+	background-color: #202020;
+}
+
+.wrap {
+	flex-wrap: wrap;
+}
+
+@media (max-width: 24em) {
+
+	h1 {
+		font-size: 3rem;
+	}
+}
+
+/*
+ *	DEMO SECTION STYLES
+ *	=============================================
+ */
+
+/*
+ *	INTRO
+ *	---------------------------------------------
+ */
+
+.intro__heading {
+    position: relative;
+    max-width: 40rem;
+    margin: 0 auto;
+    padding: .5rem 1rem;
+    background-color: #000;
+    border: 1px solid #a5802a;
+    z-index: 10;
+    border-left: none;
+    border-right: none
+}
+
+.heading__image {
+    position: absolute;
+    width: 11rem;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: -2.6rem;
+    z-index: 0;
+}
+
+.heading__image-background {
+	position: absolute;
+	left: -3rem;
+	top: 15rem;
+	width: 65%;
+	z-index: 0;
+}
+
+.intro__section {
+	position: relative;
+	z-index: 20;
+	margin-top: 3rem
+}
+
+.intro-image {
+	position: absolute;
+	top: 4.8rem;
+	left: 0;
+	right: 0;
+	margin: auto;
+	width: 75%;
+	z-index: 0;
+}
+
+.intro__section__cards {
+	background-image: url("../images/star-background.svg");
+	background-repeat: no-repeat;
+	background-position: center 108%;
+	background-attachment: fixed;
+}
+
+.intro__section__overview > p:first-child {
+	max-width: 34rem;
+}
+
+.intro__section__overview .highlight,
+.intro__section__cards .highlight,
+.outro__highlight .highlight {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+/*
+ *	LAYOUT: FLEX
+ *	---------------------------------------------
+ */
+
+ .l-flex--guide,
+ .l-flex--halves,
+ .l-flex--guide--callout {
+	display: flex;
+	position: relative;
+	z-index: 20;
+}
+
+ .l-flex--halves,
+ .l-flex--guide--callout  {
+	flex-wrap: wrap;
+ }
+
+ .l-flex-center {
+	justify-content: center;
+ }
+
+
+ @media (min-width: 34em) {
+
+	.l-flex--guide--callout  {
+		margin-left: -1.5rem;
+		margin-right: -1.5rem;
+	}
+
+}
+
+/*
+ *	GUIDE
+ *	---------------------------------------------
+ */
+
+.guide-section {
+	position: relative;
+} 
+
+.side-image {
+    background-image: url("../images/side-star-chart.svg");
+    background-repeat: no-repeat;
+    background-position: right 0;
+    background-attachment: fixed;
+    background-size: 49%;
+}
+
+.side-image-left {
+	background-image: url("../images/side-signs.svg");
+    background-repeat: no-repeat;
+    background-position: left 0;
+    background-attachment: fixed;
+    background-size: 49%;
+}
+
+.moon-background {
+	background-image: url("../images/try-it-out.svg");
+    background-repeat: no-repeat;
+    background-position: center left;
+    background-attachment: fixed;
+    background-size: 100%;	
+}
+
+.guide-col-main {
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.guide-col-side {
+	width: 100%;
+	margin: 0 1.5rem;
+}
+
+/* Use for pullout/highlight */
+.guide-col-main--alt {
+	width: 100%;
+	margin: 0 1.5rem;
+}
+
+.callout {
+	position: relative;
+	max-width: 30rem;
+	font-size: 1.4rem;
+	margin: 0 auto;
+	padding: 1rem;
+	text-align: center;
+}
+
+.callout::before {
+	content: url("../images/triangle-up.svg");
+	display: block;
+	position: absolute;
+	margin: auto;
+	left: 0;
+	right: 0;
+	top: -1.2rem;
+	max-width: 2rem;
+	background-color: #202020;
+}
+
+.callout-light,
+.callout-dark {
+	position: relative;
+	padding: 1rem;
+	font-size: 1.2rem;
+	text-align: center;
+}
+
+.callout-light {
+	border: 2px solid #9b8e6e;
+}
+
+.callout,
+.callout-dark {
+	border: 2px solid #a5802a;	
+}
+
+.callout-text,
+.callout-text-dark {
+	order: 1;
+	margin-bottom: 1.5rem;
+ }
+
+.callout-text::before {
+	content: url("../images/moon-detail.svg");
+	display: block;
+	position: absolute;
+	margin: auto;
+	left: 0;
+	right: 0;
+	top: -.8rem;
+	max-width: 4rem;
+}
+
+.callout-text-dark::before {
+	content: url("../images/earth-detail.svg");
+	display: block;
+	position: absolute;
+	margin: auto;
+	left: 0;
+	right: 0;
+	top: -1rem;
+	max-width: 2rem;
+}
+
+.callout-img {
+	order: 2;
+}
+
+.callout-img--vertical {
+	position: relative;
+	display: block;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+code {
+	padding: .25em;
+	background: #dbccaa;
+	color: #000;
+}
+
+pre {
+	margin-top: 1.5em;
+	margin-right: auto;
+	max-width: 44rem;
+}
+
+pre code {
+	display: block;
+	padding: 1.25em;
+	tab-size: 3;
+	background: #dbccaa;
+	color: #000;
+	word-break: break-all;
+}
+
+@media (min-width: 47em) {
+
+	.guide-col-main {
+		max-width: 44rem;
+	}
+
+	.guide-col-main--alt {
+		max-width: 38rem;
+		flex: 1 1 20rem;
+	}
+	
+	.guide-col-side {
+		max-width: 24rem;
+		flex: 1 1 15rem;
+	}
+
+	.callout-text,
+	.callout-text-dark {
+		margin-bottom: 0;
+	}
+}
+
+/*
+ *	COMPONENT: CARDS
+ *	---------------------------------------------
+ */
+
+.card {
+	position: relative;
+	flex: 1 1 20rem;
+	margin: 1.5rem 0;
+	max-width: 23rem;
+	background-color: #202020;
+	border: 2px solid #a5802a;
+}
+
+.card--right {
+	order: 1;
+}
+
+.card--left {
+	order: 2;
+}
+
+.card--bottom {
+	border-top: 2px solid #a5802a;
+}
+
+.card h3 {
+	position: absolute;
+	max-width: 9rem;
+	margin: auto;
+	left: 0;
+	right: 0;
+	top: -1rem;
+	background: #202020;
+}
+
+.card--illustration {
+	max-width: 15rem;
+	margin: 1rem auto 0 auto;
+}
+
+.card--caption {
+	font-size: .8rem;
+	padding: 1rem;
+	letter-spacing: .02rem;
+	line-height: 1.2rem;
+	text-align: center;
+}
+
+@media (min-width: 34em) {
+	
+	.card {
+		margin-right: 1.5rem;
+		margin-left: 1.5rem;
+	}
+
+}
+
+/*
+ *	LAYOUT: CHARTS
+ *	---------------------------------------------
+ */
+
+ .chart {
+	position: relative;
+	flex: 1 1 20rem;
+	margin: 1.5rem 0;
+	max-width: 35rem;
+	background-color: #202020;
+}
+
+.non-chart {
+	position: relative;
+	flex: 1 1 20rem;
+	max-height: 20rem;
+	margin: 1.5rem 0;
+	align-self: center;
+}
+
+@media (max-width: 34em) {
+	
+	.non-chart,
+	.chart {
+		width: 100%;
+		margin: 1.5rem auto;
+	}
+}
+
+@media (min-width: 34.1em) {
+	
+	.non-chart,
+	.chart {
+		margin-right: 1.5rem;
+		margin-left: 1.5rem;
+	}
+
+}
+
+/*
+ *	UNIVERSAL COMPONENTS
+ *	=============================================
+ */
+
+/*
+ *	COMPONENT: NAV BAR
+ *	---------------------------------------------
+ */
+
+.c-nav-bar {
+	background: #000;
+	color: #ccc;
+}
+
+.c-nav-bar a {
+	color: #fff;
+	border-bottom-color: rgba(255, 255, 255, .66);
+}
+
+/* DO NOT remove focus altogether, just style to your colors */
+.c-nav-bar__breadcrumb a:focus {
+	outline: 1px dotted #fff;
+}
+
+/* Only used in mobile-first design */
+.c-nav-bar__breadcrumb {
+	border-bottom-color: #444;
+}
+
+.c-nav-bar__title {
+	color: #fff;
+}
+
+/* TABLE OF CONTENTS DROPDOWN */
+
+.c-toc__btn {
+	background: #000;
+	color: #fff;
+}
+
+.c-toc__btn:hover,
+.c-toc__btn:focus {
+	background: #222;
+}
+
+.c-toc__btn:active {
+	background: #444;
+}
+
+.c-toc__arrow path {
+	stroke: #fff;
+}
+
+.c-toc__items {
+	background: #444;
+}
+
+.c-toc__item a:hover,
+.c-toc__item a:focus {
+	background: #222;
+}
+
+/*
+ *	COMPONENT: INTRO
+ *	---------------------------------------------
+ */
+
+.c-intro {
+	background: #f9f9f9;
+	text-align: center;
+}
+
+/*
+ *	LAYOUT: "BANNER" SECTIONS
+ *	---------------------------------------------
+ */
+
+.l-section--banner,
+.l-subsection--banner {
+	background-color: #f2f2f2;
+}
+
+.l-section--banner--dark,
+.l-subsection--banner--dark {
+	background-color: #202020;
+	color: #fff;
+}
+
+.l-section--banner--dark-black {
+	background-color: #0c0c0c;
+	color: #fff;
+}
+
+.l-section--banner a:link,
+.l-section--banner a:visited,
+.l-subsection--banner a:link,
+.l-subsection--banner a:visited {
+	color: #000;
+}
+
+/*
+ *	COMPONENT: OUTRO
+ *	---------------------------------------------
+ */
+
+.c-outro a {
+	color: #000;
+}
+
+.c-outro a:hover {
+	color: #555;
+}
+
+a.c-outro__github {
+	background: #a5802a;
+	color: #000;
+}
+
+a.c-outro__github:hover {
+	background: #86671d;
+	color: #fff;
+}
+
+a.c-outro__github:active {
+	background: #86671d;
+}
