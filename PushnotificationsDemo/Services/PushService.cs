@@ -67,12 +67,15 @@ namespace PushnotificationsDemo.Services
         public string GetVapidPublicKey() => _vapidDetails.PublicKey;
 
         /// <inheritdoc />
-        public async Task Subscribe(PushSubscription subscription)
+        public async Task<PushSubscription> Subscribe(PushSubscription subscription)
         {
-            if (await _context.PushSubscription.AnyAsync(s => s.P256Dh == subscription.P256Dh)) return;
+            if (await _context.PushSubscription.AnyAsync(s => s.P256Dh == subscription.P256Dh))
+                return await _context.PushSubscription.FindAsync(subscription.P256Dh);
 
             await _context.PushSubscription.AddAsync(subscription);
             await _context.SaveChangesAsync();
+
+            return subscription;
         }
 
         /// <inheritdoc />

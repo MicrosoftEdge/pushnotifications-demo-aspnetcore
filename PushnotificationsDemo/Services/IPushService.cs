@@ -26,7 +26,7 @@ namespace PushnotificationsDemo.Services
         /// Register a push subscription (save to the database for later use)
         /// </summary>
         /// <param name="subscription">push subscription</param>
-        Task Subscribe(PushSubscription subscription);
+        Task<PushSubscription> Subscribe(PushSubscription subscription);
 
         /// <summary>
         /// Un-register a push subscription (delete from the database)

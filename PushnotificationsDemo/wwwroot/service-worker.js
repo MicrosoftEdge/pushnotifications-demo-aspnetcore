@@ -2,31 +2,41 @@
 
 importScripts('./js/util.js');
 
-self.addEventListener('install', function(event) {
+self.addEventListener('install', function (event) {
     self.skipWaiting();
 });
 
-self.addEventListener('activate', function(event) {
+self.addEventListener('activate', function (event) {
     event.waitUntil(clients.claim());
 });
 
-self.addEventListener('push', function(event) {
-    const data = JSON.parse(event.data.text());
+// Respond to a server push with a user notification
+self.addEventListener('push', function (event) {
+    if (event.data) {
+        const { title, lang = 'en', body, tag, timestamp, requireInteraction, actions, image } = event.data.json();
 
-    event.waitUntil(
-        registration.showNotification(data.title, {
-            body: data.message,
-            icon: 'images/toast-image.jpg'
-        })
-    );
+        const promiseChain = self.registration.showNotification(title, {
+            lang,
+            body,
+            requireInteraction,
+            tag: tag || undefined,
+            timestamp: timestamp ? Date.parse(timestamp) : undefined,
+            actions: actions || undefined,
+            image: image || undefined,
+            badge: '/images/favicon.png',
+            icon: '/images/toast-image.jpg'
+        });
+        // Ensure the toast notification is displayed before exiting this function
+        event.waitUntil(promiseChain);
+    }
 });
 
-self.addEventListener('notificationclick', function(event) {
+self.addEventListener('notificationclick', function (event) {
     event.notification.close();
 
     event.waitUntil(
         clients.matchAll({ type: 'window', includeUncontrolled: true })
-            .then(function(clientList) {
+            .then(function (clientList) {
                 if (clientList.length > 0) {
                     let client = clientList[0];
 
@@ -44,12 +54,12 @@ self.addEventListener('notificationclick', function(event) {
     );
 });
 
-self.addEventListener('pushsubscriptionchange', function(event) {
+self.addEventListener('pushsubscriptionchange', function (event) {
     event.waitUntil(
         Promise.all([
             Promise.resolve(event.oldSubscription ? deleteSubscription(event.oldSubscription) : true),
             Promise.resolve(event.newSubscription ? event.newSubscription : subscribePush(registration))
-                .then(function(sub) { return saveSubscription(sub); })
+                .then(function (sub) { return saveSubscription(sub); })
         ])
     );
 });

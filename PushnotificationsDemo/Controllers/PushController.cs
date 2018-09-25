@@ -1,10 +1,10 @@
-﻿using System;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 using PushnotificationsDemo.Models;
 using PushnotificationsDemo.Services;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace PushnotificationsDemo.Controllers
 {
@@ -59,9 +59,7 @@ namespace PushnotificationsDemo.Controllers
                 P256Dh = model.Subscription.Keys.P256Dh
             };
 
-            await _pushService.Subscribe(subscription);
-
-            return subscription;
+            return await _pushService.Subscribe(subscription);
         }
 
         // POST: api/push/unsubscribe
@@ -97,9 +95,11 @@ namespace PushnotificationsDemo.Controllers
         /// <response code="400">BadRequest if subscription is null or invalid.</response>
         /// <response code="401">Unauthorized</response>
         [HttpPost("send/{userId}")]
-        public async Task<ActionResult<AcceptedResult>> Send([FromRoute] string userId, [FromBody] Notification notification)
+        public async Task<ActionResult<AcceptedResult>> Send([FromRoute] string userId, [FromBody] Notification notification, [FromQuery] int? delay)
         {
             if (!_env.IsDevelopment()) return Forbid();
+
+            if (delay != null) Thread.Sleep((int)delay);
 
             await _pushService.Send(userId, notification);
 

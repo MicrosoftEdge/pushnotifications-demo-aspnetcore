@@ -62,6 +62,7 @@ namespace PushnotificationsDemo.Models
 
     public class NotificationTag
     {
+        public const string Notify = "demo_testmessage";
         public const string Trivia = "demo_trivia";
     }
 }

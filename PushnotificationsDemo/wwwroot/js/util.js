@@ -14,7 +14,7 @@ function urlB64ToUint8Array(base64String) {
 }
 
 function subscribePush(registration) {
-    return getPublicKey().then(function(key) {
+    return getPublicKey().then(function (key) {
         return registration.pushManager.subscribe({
             userVisibleOnly: true,
             applicationServerKey: key
@@ -24,10 +24,10 @@ function subscribePush(registration) {
 
 function getPublicKey() {
     return fetch('./api/push/vapidpublickey')
-        .then(function(response) {
+        .then(function (response) {
             return response.json();
         })
-        .then(function(data) {
+        .then(function (data) {
             return urlB64ToUint8Array(data);
         });
 }
@@ -41,7 +41,11 @@ function saveSubscription(subscription) {
         body: JSON.stringify({
             subscription: subscription
         })
-    });
+    })
+        .then(response => response.json())
+        .then(response => {
+            localStorage.setItem('userId', response.userId);
+        });
 }
 
 function deleteSubscription(subscription) {

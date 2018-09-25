@@ -4,20 +4,20 @@ function registerServiceWorker() {
 
 function resetServiceWorkerAndPush() {
     return navigator.serviceWorker.getRegistration()
-        .then(function(registration) {
+        .then(function (registration) {
             if (registration) {
                 return registration.unregister();
             }
         })
-        .then(function() {
-            return registerServiceWorker().then(function(registration) {
+        .then(function () {
+            return registerServiceWorker().then(function (registration) {
                 return registerPush();
             });
         });
 }
 
 function subscribePushAndUpdateButtons(registration) {
-    return subscribePush(registration).then(function(subscription) {
+    return subscribePush(registration).then(function (subscription) {
         updateUnsubscribeButtons();
         return subscription;
     });
@@ -25,12 +25,12 @@ function subscribePushAndUpdateButtons(registration) {
 
 function registerPush() {
     return navigator.serviceWorker.ready
-        .then(function(registration) {
-            return registration.pushManager.getSubscription().then(function(subscription) {
+        .then(function (registration) {
+            return registration.pushManager.getSubscription().then(function (subscription) {
                 if (subscription) {
                     // renew subscription if we're within 5 days of expiration
                     if (subscription.expirationTime && Date.now() > subscription.expirationTime - 432000000) {
-                        return unsubscribePush().then(function() {
+                        return unsubscribePush().then(function () {
                             updateUnsubscribeButtons();
                             return subscribePushAndUpdateButtons(registration);
                         });
@@ -42,44 +42,41 @@ function registerPush() {
                 return subscribePushAndUpdateButtons(registration);
             });
         })
-        .then(function(subscription) {
-            saveSubscription(subscription);
-            return subscription;
+        .then(function (subscription) {
+            return saveSubscription(subscription);
         });
 }
 
-function sendMessage(sub, title, message, delay) {
-    const data = {
-        subscription: sub,
-        payload: JSON.stringify({
-            title: title,
-            message: message
-        })
-    }
+function sendMessage(title, message, delay) {
+    const notification = {
+        title: title,
+        body: message,
+        //tag: 'demo_testmessage' //we don't want a tag, as it would cause every notification after the first one to appear in the notification drawer only
+    };
 
-    if (delay) {
-        data.delay = delay;
-    }
+    const userId = localStorage.getItem('userId');
+    let apiUrl = `./api/push/send/${userId}`;
+    if (delay) apiUrl += `?delay=${delay}`;
 
-    return fetch('./api/notify', {
+    return fetch(apiUrl, {
         method: 'post',
         headers: {
             'Content-type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(notification)
     });
 }
 
 function getPushSubscription() {
     return navigator.serviceWorker.ready
-        .then(function(registration) {
+        .then(function (registration) {
             return registration.pushManager.getSubscription();
         });
 }
 
 function unsubscribePush() {
-    return getPushSubscription().then(function(subscription) {
-        return subscription.unsubscribe().then(function() {
+    return getPushSubscription().then(function (subscription) {
+        return subscription.unsubscribe().then(function () {
             deleteSubscription(subscription);
         });
     });
@@ -96,15 +93,15 @@ function updateUnsubscribeButtons() {
         return;
     }
 
-    const fn = function(event) {
+    const fn = function (event) {
         event.preventDefault();
-        unsubscribePush().then(function() {
+        unsubscribePush().then(function () {
             updateUnsubscribeButtons();
         });
     };
 
     return getPushSubscription()
-        .then(function(subscription) {
+        .then(function (subscription) {
             if (subscription) {
                 unsubBtn.removeAttribute('disabled');
                 unsubBtn.innerText = 'Unsubscribe from push';
@@ -125,7 +122,7 @@ function updateUnsubscribeButtons() {
         });
 }
 
-document.addEventListener('DOMContentLoaded', function(event) {
+document.addEventListener('DOMContentLoaded', function (event) {
     const pushBtn = document.getElementById('initiate-push');
     const pushBtn2 = document.getElementById('initiate-push-2');
 
@@ -136,22 +133,22 @@ document.addEventListener('DOMContentLoaded', function(event) {
         return;
     }
 
-    registerServiceWorker().then(function() {
+    registerServiceWorker().then(function () {
         pushBtn.removeAttribute('disabled');
         pushBtn2.removeAttribute('disabled');
         pushBtn.innerText = 'Initiate push';
         pushBtn2.innerText = 'Initiate push';
-        pushBtn.addEventListener('click', function(event) {
+        pushBtn.addEventListener('click', function (event) {
             event.preventDefault();
-            registerPush().then(function(sub) {
-                sendMessage(sub, 'Interested in how to do this?',
+            registerPush().then(function () {
+                sendMessage('Interested in how to do this?',
                     'Click on this notification to get back to the tutorial to learn how to do this!', 5000);
             });
         });
-        pushBtn2.addEventListener('click', function(event) {
+        pushBtn2.addEventListener('click', function (event) {
             event.preventDefault();
-            registerPush().then(function(sub) {
-                sendMessage(sub, 'Cool!', 'It works!');
+            registerPush().then(function () {
+                sendMessage('Cool!', 'It works!');
             });
         });
         updateUnsubscribeButtons();
