@@ -26,6 +26,7 @@ self.addEventListener('push', function (event) {
             badge: '/images/favicon.png',
             icon: '/images/toast-image.jpg'
         });
+
         // Ensure the toast notification is displayed before exiting this function
         event.waitUntil(promiseChain);
     }
