@@ -1,0 +1,14 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "Environment": "Production",
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "AzureWebJobsDashboard": "",
+    "Database": "Server=(localdb)\\mssqllocaldb;Database=PushDemoInMemoryDb;Trusted_Connection=True;ConnectRetryCount=0",
+    "VapidSubject": "mailto:email@outlook.com",
+    "VapidPublicKey": "",
+    "VapidPrivateKey": "",
+    "WEBSITE_TIME_ZONE": "Pacific Standard Time",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet"
+  }
+}

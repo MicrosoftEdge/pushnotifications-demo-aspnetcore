@@ -49,6 +49,12 @@ The following files contain code that's related to generating VAPID keys, regist
 - [`script.js`](/PushnotificationsDemo/wwwroot/js/script.js) Runs after DOM is loaded and contains methods for service worker and push subscription registration.
 - [`util.js`](/PushnotificationsDemo/wwwroot/js/util.js) Contains methods for push subscription management.
 
+## Running the Azure Function App
+
+The service which is sending the periodic push notifications (7AM Pacific Standard Time every day) is using Azure Funtions to run periodically. You can run it locally by calling `func host start` in the `PushnotificationsDemoFuntion` folder. You need to create a copy of `settings.json` with the name of `local.settings.json` and fill the VAPID keys.
+
+If you want to run the Function App more frequently for debugging for example, you can use something like this: `0,15,30,45 * * * * *`. This will run every 15 seconds.
+
 ## Contributing
 
 If you'd like to contribute to this sample, see [CONTRIBUTING.MD](/CONTRIBUTING.md).
