@@ -39,7 +39,7 @@ The following files contain code that's related to generating VAPID keys, regist
 
 - [`appsettings.json`](/PushnotificationsDemo/appsettings.json) Contains VAPID keys and the database connection string.
 - [`Startup.cs`](/PushnotificationsDemo/Startup.cs) Configures the app and the services it uses, including the database connection.
-- [`PushController.cs`](/PushnotificationsDemo/PushController.cs) Contains the API endpoints.
+- [`PushController.cs`](/PushnotificationsDemo/Controllers/PushController.cs) Contains the API endpoints.
 - [`PushService.cs`](/PushnotificationsDemo/Services/PushService.cs) Contains the Push service which is used to manage saving subscriptions to the database and sending push notifications.
 
 ### Frontend
@@ -57,7 +57,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 
 ## Questions and comments
 
-We'd love to get your feedback about the Microsoft Graph Connect Sample for ASP.NET Core. You can send your questions and suggestions to us in the [Issues](https://github.com/mark-szabo/pushnotifications-demo-aspnetcore/issues) section of this repository.
+We'd love to get your feedback about the Microsoft Graph Connect Sample for ASP.NET Core. You can send your questions and suggestions to us in the [Issues](https://github.com/MicrosoftEdge/pushnotifications-demo-aspnetcore/issues) section of this repository.
 
 Questions about Microsoft Edge in general should be posted to [Stack Overflow](https://stackoverflow.com/questions/tagged/microsoft-edge). Make sure that your questions or comments are tagged with _[microsoft-edge]_.
 
